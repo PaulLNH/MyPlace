@@ -1,60 +1,102 @@
+html {
+  overflow: hidden;
+}
+
 .card {
-    border-style: single;
-    border-color: black;
-    border-width: 2px;
-    background-color: #87CEFA;
-    margin-right: 20px;
-    height: 500px;
-    width: 800px !important;
-    color: black !important;
+  border-style: single;
+  border-color: black;
+  border-width: 2px;
+  background-color: #87cefa;
+  margin-right: 20px;
+  height: 500px;
+  width: 800px !important;
+  color: black !important;
 }
 
 .heart {
-    font-size: 25px;
-      color:red;
-  }
-  
+  font-size: 25px;
+  color: red;
+}
 
 h1 {
-    font-family: 'Righteous', cursive;
-    font-size: 90px;
+  font-family: "Righteous", cursive;
+  font-size: 90px;
 }
 
 h3 {
-    font-size: 15px;
+  font-size: 15px;
 }
 #cardstock {
-    font-family: 'Pontano Sans', sans-serif;
-   
+  font-family: "Pontano Sans", sans-serif;
 }
 
 /* equal card height */
-.row-equal > div[class*='col-'] {
-    display: flex;
-    flex: 1 0 auto;
+.row-equal > div[class*="col-"] {
+  display: flex;
+  flex: 1 0 auto;
 }
 
 .row-equal .card {
-   width: 100%;
+  width: 100%;
 }
 
 /* ensure equal card height inside carousel */
-.carousel-inner>.row-equal.active, 
-.carousel-inner>.row-equal.next, 
-.carousel-inner>.row-equal.prev {
-    display: flex;
+.carousel-inner > .row-equal.active,
+.carousel-inner > .row-equal.next,
+.carousel-inner > .row-equal.prev {
+  display: flex;
 }
 
 /* prevent flicker during transition */
-.carousel-inner>.row-equal.active.left, 
-.carousel-inner>.row-equal.active.right {
-    opacity: 0.5;
-    display: flex;
+.carousel-inner > .row-equal.active.left,
+.carousel-inner > .row-equal.active.right {
+  opacity: 0.5;
+  display: flex;
 }
-
 
 /* control image height */
 .card-img-top-250 {
-    max-height: 250px;
-    overflow:hidden;
+  max-height: 250px;
+  overflow: hidden;
+}
+
+/* CSS for map */
+
+#map {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  /* Set z-index to 0 as it will be on a layer below the contact form */
+}
+
+/* CSS SPECIFIC TO GOOGLE MAP BACKGORUND */
+#mainContent {
+  position: relative;
+  z-index: 1;
+  /* The z-index should be higher than Google Maps */
+  width: 300px;
+  margin: 60px auto 0;
+  padding: 10px;
+  background: black;
+  height: auto;
+  opacity: 0.45;
+  /* Set the opacity for a slightly transparent Google Form */
+  color: white;
+}
+
+.logoText {
+  display: inline-block;
+  color: white;
+}
+
+#logo {
+  color: white;
+  display: inline-block;
+  z-index: 2;
+  position: absolute;
+  top: 10%;
+  left: 10px;
 }
