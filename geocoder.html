@@ -51,13 +51,18 @@
         method: "GET"
     }).then(function (response) {
 
+// response object
       console.log(response);
+
       let searchResults = response.results[0];
+// object with coordinates; ().lat & .lng)
+      let coords = searchResults.geometry;
+      console.log(coords);
 
-    let searchLat = searchResults.annotations.DMS.lat;
-    let searchLng = searchResults.annotations.DMS.lng;
-
-
+// separate variables for lat & lng
+      let searchLat = coords.lat;
+      let searchLng = coords.lng;
+// log values to console
       console.log("latitude: " + searchLat + " longitude: " + searchLng);
     });
 
