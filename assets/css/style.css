@@ -2,12 +2,25 @@
     border-style: single;
     border-color: black;
     border-width: 2px;
-    background-color: #FFE4B5;
+    background-color: #87CEFA;
     margin-right: 20px;
     height: 500px;
     width: 800px !important;
+    color: black !important;
 }
 
+h1 {
+    font-family: 'Righteous', cursive;
+    font-size: 90px;
+}
+
+h3 {
+    font-size: 15px;
+}
+#cardstock {
+    font-family: 'Pontano Sans', sans-serif;
+   
+}
 
 /* equal card height */
 .row-equal > div[class*='col-'] {
