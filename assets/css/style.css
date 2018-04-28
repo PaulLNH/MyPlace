@@ -9,6 +9,12 @@
     color: black !important;
 }
 
+.heart {
+    font-size: 25px;
+      color:red;
+  }
+  
+
 h1 {
     font-family: 'Righteous', cursive;
     font-size: 90px;
