@@ -31,42 +31,42 @@
   </script>
 
 <!-- script needed for form-capture & other page-related javascript -->
-    <script>
+<script>
 
-    let thisSearch = searchParams("34 Ham St. Dover NH, USA", true);
-    searchParams = $.param(thisSearch);
-    // queryURL = urlAPI + "json?" + $.param(thisSearch);
-
-
-    queryURL = urlAPI + "json?" + searchParams;
-    // object properties (search paramaters) can be retrieved individually
-    //console.log("address: " + thisSearch.q);
-
-    console.log(queryURL);
+  let thisSearch = searchParams("Dover NH, USA", true);
+  searchParams = $.param(thisSearch);
+  // queryURL = urlAPI + "json?" + $.param(thisSearch);
 
 
-    // Ajax call to retrieve search results
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
+  queryURL = urlAPI + "json?" + searchParams;
+  // object properties (search paramaters) can be retrieved individually
+  //console.log("address: " + thisSearch.q);
+
+  console.log(queryURL);
+
+
+  // Ajax call to retrieve search results
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function (response) {
 
 // response object
-      console.log(response);
+  console.log(response);
 
-      let searchResults = response.results[0];
+  let searchResults = response.results[0];
 // object with coordinates; ().lat & .lng)
-      let coords = searchResults.geometry;
-      console.log(coords);
+  let coords = searchResults.geometry;
+  console.log(coords);
 
 // separate variables for lat & lng
-      let searchLat = coords.lat;
-      let searchLng = coords.lng;
+  let searchLat = coords.lat;
+  let searchLng = coords.lng;
 // log values to console
-      console.log("latitude: " + searchLat + " longitude: " + searchLng);
-    });
+  console.log("latitude: " + searchLat + " longitude: " + searchLng);
 
-    </script>
-
+)};
+</script>
 </body>
 </html>
