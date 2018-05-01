@@ -1,24 +1,115 @@
-html {
-  overflow-y: hidden;
+/* Uncomment this html overflow if the page starts to get weird with scroll bars */
+/* html {
+  overflow: hidden;
+} */
+
+.heart {
+  font-size: 25px;
+  color: red;
 }
 
-.article {
+/* MyPlace logo text */
+h1 {
+  font-family: "Righteous", cursive;
+  font-size: 1.5em;
+}
+
+/* MyPlace tagline text */
+h4 {
+  font-size: 1.05rem;
+}
+
+/* Our university titles */
+h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* Makes the text inside the card look even */
+.card-body {
   padding: 0;
-  overflow: hidden;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+p {
+  margin: 0;
+}
+
+/* CSS for map background */
+#map {
   height: 100%;
   width: 100%;
-}
-.article img {
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: 0;
-  height: auto;
-  width: 100%;
-  margin: -10;
-  margin-top: -50px;
-  overflow: hidden;
 }
-.article h1,
-.article h2 {
-  position: relative;
-  z-index: 1;
+
+/* Sets the MyPlace logo to the front, sets the positioning and the size */
+#logo {
+  color: white;
+  display: inline-block;
+  z-index: 2;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  font-size: 3em;
+}
+
+/* This is the main "card" that displays our content */
+#contentArea {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  width: 35vw;
+  height: 85vh;
+  background: rgb(219, 219, 219);
+  overflow-y: auto;
+  /* opacity: 0.85; */
+}
+
+/* gives our inner elements some breathing room */
+.carousel-item {
+  padding: 20px;
+}
+
+/* Sets the size of the image and centers it */
+img {
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 30%;
+}
+
+/* Aligns the previous and next carrots to the top, gives them 30% height (so the click space isn't too large) */
+.carousel-control-next,
+.carousel-control-prev {
+  margin-top: 20%;
+  margin-bottom: auto;
+  height: 30%;
+}
+
+/* Sets the clickable area of the prev and next icons, removes the white default carots */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  background-image: none;
+}
+
+/* Cusotm carots to replace the white next carot we hid */
+.carousel-control-next-icon:after {
+  content: "►";
+  font-size: 55px;
+  font-weight: bolder;
+  color: orangered;
+}
+/* Cusotm carots to replace the white previous carot we hid */
+.carousel-control-prev-icon:after {
+  content: "◄";
+  font-size: 55px;
+  font-weight: bolder;
+  color: orangered;
 }
