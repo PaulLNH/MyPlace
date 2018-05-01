@@ -1,67 +1,42 @@
-html {
+/* Uncomment this html overflow if the page starts to get weird with scroll bars */
+/* html {
   overflow: hidden;
-}
-
-.card {
-  border-style: single;
-  border-color: black;
-  border-width: 2px;
-  background-color: #87cefa;
-  margin-right: 20px;
-  height: 500px;
-  width: 800px !important;
-  color: black !important;
-}
+} */
 
 .heart {
   font-size: 25px;
   color: red;
 }
 
+/* MyPlace logo text */
 h1 {
   font-family: "Righteous", cursive;
-  font-size: 90px;
+  font-size: 1.5em;
 }
 
+/* MyPlace tagline text */
+h4 {
+  font-size: 1.05rem;
+}
+
+/* Our university titles */
 h3 {
-  font-size: 15px;
-}
-#cardstock {
-  font-family: "Pontano Sans", sans-serif;
+  font-size: 1.25rem;
+  font-weight: bold;
 }
 
-/* equal card height */
-.row-equal > div[class*="col-"] {
-  display: flex;
-  flex: 1 0 auto;
+/* Makes the text inside the card look even */
+.card-body {
+  padding: 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
-.row-equal .card {
-  width: 100%;
+p {
+  margin: 0;
 }
 
-/* ensure equal card height inside carousel */
-.carousel-inner > .row-equal.active,
-.carousel-inner > .row-equal.next,
-.carousel-inner > .row-equal.prev {
-  display: flex;
-}
-
-/* prevent flicker during transition */
-.carousel-inner > .row-equal.active.left,
-.carousel-inner > .row-equal.active.right {
-  opacity: 0.5;
-  display: flex;
-}
-
-/* control image height */
-.card-img-top-250 {
-  max-height: 250px;
-  overflow: hidden;
-}
-
-/* CSS for map */
-
+/* CSS for map background */
 #map {
   height: 100%;
   width: 100%;
@@ -69,34 +44,72 @@ h3 {
   top: 0;
   left: 0;
   z-index: 0;
-  /* Set z-index to 0 as it will be on a layer below the contact form */
 }
 
-/* CSS SPECIFIC TO GOOGLE MAP BACKGORUND */
-#mainContent {
-  position: relative;
-  z-index: 1;
-  /* The z-index should be higher than Google Maps */
-  width: 300px;
-  margin: 60px auto 0;
-  padding: 10px;
-  background: black;
-  height: auto;
-  opacity: 0.45;
-  /* Set the opacity for a slightly transparent Google Form */
-  color: white;
-}
-
-.logoText {
-  display: inline-block;
-  color: white;
-}
-
+/* Sets the MyPlace logo to the front, sets the positioning and the size */
 #logo {
   color: white;
   display: inline-block;
   z-index: 2;
   position: absolute;
   top: 10%;
-  left: 10px;
+  left: 5%;
+  font-size: 3em;
+}
+
+/* This is the main "card" that displays our content */
+#contentArea {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  width: 35vw;
+  height: 85vh;
+  background: rgb(219, 219, 219);
+  overflow-y: auto;
+  /* opacity: 0.85; */
+}
+
+/* gives our inner elements some breathing room */
+.carousel-item {
+  padding: 20px;
+}
+
+/* Sets the size of the image and centers it */
+img {
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 30%;
+}
+
+/* Aligns the previous and next carrots to the top, gives them 30% height (so the click space isn't too large) */
+.carousel-control-next,
+.carousel-control-prev {
+  margin-top: 20%;
+  margin-bottom: auto;
+  height: 30%;
+}
+
+/* Sets the clickable area of the prev and next icons, removes the white default carots */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  background-image: none;
+}
+
+/* Cusotm carots to replace the white next carot we hid */
+.carousel-control-next-icon:after {
+  content: "►";
+  font-size: 55px;
+  font-weight: bolder;
+  color: orangered;
+}
+/* Cusotm carots to replace the white previous carot we hid */
+.carousel-control-prev-icon:after {
+  content: "◄";
+  font-size: 55px;
+  font-weight: bolder;
+  color: orangered;
 }

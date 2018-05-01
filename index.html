@@ -6,35 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MyPlace - Find apartments to get intimate with.</title>
+
+    <!-- Bootstrap 4 CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Pontano+Sans|Righteous" rel="stylesheet">
+    <!-- Font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
         crossorigin="anonymous">
+    <!-- App specific CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
-    <!--modal div-->
-    <div class="modal" tabindex="-1" role="dialog" id=myModal>
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Modal body text goes here.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Page Wrapper div -->
     <div id="map"></div>
@@ -48,148 +33,109 @@
         </span>
     </div>
     <div class="container p-t-3" id="mainContent">
-        <!-- You can even embed a Google Form here -->
 
-        <!-- <img src="" id="backgroundImg" class="article-bg"> -->
-
-        <section class="carousel slide" data-ride="carousel" id="postsCarousel">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 text-md-right lead">
-                        <a class="btn btn-outline-secondary prev" href="" title="go back">
-                            <i class="fa fa-lg fa-chevron-left"></i>
-                        </a>
-                        <a class="btn btn-outline-secondary next" href="" title="more">
-                            <i class="fa fa-lg fa-chevron-right"></i>
-                        </a>
+        <!-- BELOW IS THE CAROUSEL MADE FROM SCRATCH FOR THIS PROJECT -->
+        <div id="contentArea" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" id="UNH">
+                    <div class="img-block">
+                        <img class="d-block" src="assets/img/UNH.jpg" alt="First slide">
+                    </div>
+                    <div class="card-title">
+                        <h3>
+                            University of New Hampshire
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend tincidunt sodales. Donec
+                            lacinia eget mauris dapibus ornare. Praesent egestas tincidunt tempor. Fusce facilisis ante et
+                            consequat convallis. Maecenas nec arcu id purus interdum cursus. Morbi eu nibh nec dolor luctus
+                            consequat id eget elit. In elit nisl, consequat ut arcu vulputate, mattis lacinia velit. Praesent
+                            pellentesque ante nec enim malesuada, posuere sollicitudin ipsum mollis. Suspendisse mollis et
+                            metus vel varius. Donec sit amet magna sem. Mauris ultricies tristique lectus in malesuada. Phasellus
+                            lacus ipsum, bibendum non efficitur nec, sodales efficitur tellus. Nunc ac ultricies augue, eget
+                            aliquam erat.</p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend tincidunt sodales. Donec
+                            lacinia eget mauris dapibus ornare. Praesent egestas tincidunt tempor. Fusce facilisis ante et
+                            consequat convallis. Maecenas nec arcu id purus interdum cursus. Morbi eu nibh nec dolor luctus
+                            consequat id eget elit. In elit nisl, consequat ut arcu vulputate, mattis lacinia velit. Praesent
+                            pellentesque ante nec enim malesuada, posuere sollicitudin ipsum mollis. Suspendisse mollis et
+                            metus vel varius. Donec sit amet magna sem. Mauris ultricies tristique lectus in malesuada. Phasellus
+                            lacus ipsum, bibendum non efficitur nec, sodales efficitur tellus. Nunc ac ultricies augue, eget
+                            aliquam erat.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" id="GBCC">
+                    <div class="img-block">
+                        <img class="d-block" src="assets/img/GBCC.jpg" alt="Second slide">
+                    </div>
+                    <div class="card-title">
+                        <h3>
+                            Great Bay Community College
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend tincidunt sodales. Donec
+                            lacinia eget mauris dapibus ornare. Praesent egestas tincidunt tempor. Fusce facilisis ante et
+                            consequat convallis. Maecenas nec arcu id purus interdum cursus. Morbi eu nibh nec dolor luctus
+                            consequat id eget elit.</p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend tincidunt sodales. Donec
+                            lacinia eget mauris dapibus ornare. Praesent egestas tincidunt tempor. Fusce facilisis ante et
+                            consequat convallis.</p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend tincidunt sodales. Donec
+                            lacinia eget mauris dapibus ornare. Praesent egestas tincidunt tempor. Fusce facilisis ante et
+                            consequat convallis. Maecenas nec arcu id purus interdum cursus. Morbi eu nibh nec dolor luctus
+                            consequat id eget elit. In elit nisl, consequat ut arcu vulputate, mattis lacinia velit. Praesent
+                            pellentesque ante nec enim malesuada, posuere sollicitudin ipsum mollis. </p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend tincidunt sodales. Donec
+                            lacinia eget mauris dapibus ornare. Praesent egestas tincidunt tempor. Fusce facilisis ante et
+                            consequat convallis. Maecenas nec arcu id purus interdum cursus. Morbi eu nibh nec dolor luctus
+                            consequat id eget elit. In elit nisl, consequat ut arcu vulputate, mattis lacinia velit. Praesent
+                            pellentesque ante nec enim malesuada, posuere sollicitudin ipsum mollis. Suspendisse mollis et
+                            metus vel varius. Donec sit amet magna sem. Mauris ultricies tristique lectus in malesuada. Phasellus
+                            lacus ipsum, bibendum non efficitur nec, sodales efficitur tellus. Nunc ac ultricies augue, eget
+                            aliquam erat.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" id="MIT">
+                    <div class="img-block">
+                        <img class="d-block" src="assets/img/MIT.jpg" alt="Third slide">
+                    </div>
+                    <div class="card-title">
+                        <h3>
+                            Massachusetts Institute of Technology
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend tincidunt sodales. Donec
+                            lacinia eget mauris dapibus ornare. Praesent egestas tincidunt tempor. Fusce facilisis ante et
+                            consequat convallis.</p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend tincidunt sodales. Donec
+                            lacinia eget mauris dapibus ornare. Praesent egestas tincidunt tempor. Fusce facilisis ante et
+                            consequat convallis. </p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend tincidunt sodales. Donec
+                            lacinia eget mauris dapibus ornare. Praesent egestas tincidunt tempor. Fusce facilisis ante et
+                            consequat convallis.</p>
                     </div>
                 </div>
             </div>
-            <div class="container p-t-0 m-t-2 carousel-inner" id="cardstock">
-                <div class="row row-equal carousel-item active m-t-0">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-img-top card-img-top-250">
-                                <img class="img-fluid" src="https://07f138315bb5e97f9e43-31068357019044cca7c8e84d92de0d99.ssl.cf3.rackcdn.com/1024x768/56587_11491_001.jpg"
-                                    alt="Carousel 1">
-                                <div>
-                                    <i class="heart fa fa-heart-o"></i>
-                                </div>
-                            </div>
-                            <div class="card-block p-t-2">
-                                <h6 class="small text-wide p-b-2">$1,000/month</h6>
-                                <h2>
-                                    100 East South Street
-                                </h2>
-                                <h3>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                    penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                                    ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-img-top card-img-top-250">
-                                <img class="img-fluid" src="https://media.treehugger.com/assets/images/2018/02/bay-house-apartment-renovation-sim-plex-1.jpg.860x0_q70_crop-scale.jpg"
-                                    alt="Carousel 2">
-                            </div>
-                            <div class="card-block p-t-2">
-                                <h6 class="small text-wide p-b-2">$1,000/month</h6>
-                                <h2>
-                                    100 East South Street
-                                </h2>
-                                <h3>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                    penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                                    ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-img-top card-img-top-250">
-                                <img class="img-fluid" src="https://2u0yuyu2fs02fa819ut739hy-wpengine.netdna-ssl.com/wp-content/uploads/photo-gallery/imported_from_media_libray//river-oaks-1.jpg"
-                                    alt="Carousel 3">
-                            </div>
-                            <div class="card-block p-t-2">
-                                <h6 class="small text-wide p-b-2">$1,000/month</h6>
-                                <h2>
-                                    100 East South Street
-                                </h2>
-                                <h3>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                    penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                                    ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row row-equal carousel-item m-t-0">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-img-top card-img-top-250">
-                                <img class="img-fluid" src="https://cdn.vox-cdn.com/thumbor/kRgIN-lrvU0DHWz4LTtxu35OBXg=/0x0:3000x2094/1200x800/filters:focal(1260x807:1740x1287)/cdn.vox-cdn.com/uploads/chorus_image/image/56397185/rentstabvsrentcontrol.0.jpg"
-                                    alt="Carousel 4">
-                            </div>
-                            <div class="card-block p-t-2">
-                                <h6 class="small text-wide p-b-2">$1,000/month</h6>
-                                <h2>
-                                    100 East South Street
-                                </h2>
-                                <h3>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                    penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                                    ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-img-top card-img-top-250">
-                                <img class="img-fluid" src="https://www.prestigeapartments.co.uk/media/7942/1-162-gp-living-room-2015.jpg" alt="Carousel 5">
-                            </div>
-                            <div class="card-block p-t-2">
-                                <h6 class="small text-wide p-b-2">
-                                    $1,000/month
-                                </h6>
-                                <h2>
-                                    100 East South Street
-                                </h2>
-                                <h3>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                    penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                                    ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 fadeIn wow">
-                        <div class="card">
-                            <div class="card-img-top card-img-top-250">
-                                <img class="img-fluid" src="https://backwoodshousewife.com/wp-content/uploads/2017/08/Good-Apartments-Near-Me.jpg" alt="Carousel 6">
-                            </div>
-                            <div class="card-block p-t-2">
-                                <h6 class="small text-wide p-b-2">$1,000/month</h6>
-                                <h2>
-                                    100 East South Street
-                                </h2>
-                                <h3>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                    penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                                    ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <a class="carousel-control-prev newSlide" href="#contentArea" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon newSlide" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next newSlide" href="#contentArea" role="button" data-slide="next">
+                <span class="carousel-control-next-icon newSlide" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
 
-        </section>
+
     </div>
 
 
@@ -204,9 +150,6 @@
     <!-- Bootstrap JS CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
-    <!-- Include the Google Maps API library - required for embedding maps -->
-    <!-- <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
 
     <!-- Google maps -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXmz75aIEpLy3M36t39IfSjbsZnbEYaZc&callback=initMap">

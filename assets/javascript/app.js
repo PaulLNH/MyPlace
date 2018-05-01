@@ -1,9 +1,46 @@
-var uluru = {
-  lat: 43.1389,
-  lng: -70.937
+// Use this site to find Lat Lng: https://www.latlong.net/
+
+// Array of our places, we can replace with with API JSON if we get one working, if not manually enter places (Maybe even fireabase, and allow it to be updateable)
+var place = {
+  UNH: {
+    address: "105 Main St",
+    city: "Durham",
+    state: "NH",
+    zip: "03824",
+    lat: 43.1389,
+    lng: -70.937
+  },
+  GBCC: {
+    address: "320 Corporate Dr",
+    city: "Portsmouth",
+    state: "NH",
+    zip: "03801",
+    lat: 43.072149,
+    lng: -70.798802
+  },
+  MIT: {
+    address: "77 Massachusetts Ave",
+    city: "Cambridge",
+    state: "MA",
+    zip: "02139",
+    lat: 42.359299,
+    lng: -71.093526
+  }
 };
 
-var latitudeAdj = uluru.lat + 0.00029;
+var currentPlace = {
+  lat: place.UNH.lat,
+  lng: place.UNH.lng
+};
+
+var currentSlide;
+
+// var uluru = {
+//   lat: currentPlace,
+//   lng: place.UNH.lng
+// };
+
+var latitudeAdj = currentPlace.lat + 0.00039;
 
 var centerAdj = {
   lat: latitudeAdj,
@@ -11,9 +48,12 @@ var centerAdj = {
 };
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 20,
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 18,
+    // mapTypeId: google.maps.MapTypeId.HYBRID,
     center: centerAdj,
+    // Removes the UI, we may actually want this in our app
+    disableDefaultUI: true,
     styles: [
       { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
       { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
@@ -95,34 +135,54 @@ function initMap() {
       }
     ]
   });
+  // Sets the marker for the place
   var marker = new google.maps.Marker({
-    position: uluru,
+    position: currentPlace,
     map: map
   });
 }
 
-//show modal
-$("#myModal").on("shown.bs.modal", function() {
-  $("#myInput").trigger("focus");
+function panToNewPlace(x) {
+  // Sets new place
+  currentPlace = new google.maps.LatLng(x.lat, x.lng);
+  // Pan to new place
+  map.panTo(currentPlace);
+  // Sets the marker for the place
+  var marker = new google.maps.Marker({
+    position: currentPlace,
+    map: map
+  });
+}
+
+$("#contentArea").on("slide.bs.carousel", function(e) {
+  console.log("The direction in which the carousel is sliding: " + e.direction); // The direction in which the carousel is sliding (either "left" or "right").
+  var currentSlide = e.relatedTarget;
+  console.log(currentSlide); // The DOM element that is being slid into place as the active item.
+  console.log("The index of the current item: " + e.from); // The index of the current item.
+  console.log("The index of the next item: " + e.to); // The index of the next item.
+
+  switch ($(currentSlide).attr("id")) {
+    case "UNH":
+      panToNewPlace(place.UNH);
+      break;
+    case "GBCC":
+      panToNewPlace(place.GBCC);
+      break;
+    case "MIT":
+      panToNewPlace(place.MIT);
+      break;
+    default:
+      panToNewPlace(place.UNH);
+  }
 });
 
-//
-$(".heart.fa").click(function() {
-  $(this).toggleClass("fa-heart fa-heart-o");
+// Click on the images
+$("body").on("click", ".newSlide", function() {
+  // Nothing to go here anymore, holding for a rainy day
 });
 
 $(document).ready(function() {
   $(".carousel").carousel({
     interval: false
-  });
-
-  // manual carousel controls
-  $(".next").click(function() {
-    $(".carousel").carousel("next");
-    return false;
-  });
-  $(".prev").click(function() {
-    $(".carousel").carousel("prev");
-    return false;
   });
 });
