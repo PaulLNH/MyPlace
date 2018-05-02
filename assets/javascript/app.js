@@ -1,5 +1,19 @@
 // Use this site to find Lat Lng: https://www.latlong.net/
 
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyDaJQAkTI377TzsGmJkcDrEz3J6dvaZOHU",
+  authDomain: "myplace-202423.firebaseapp.com",
+  databaseURL: "https://myplace-202423.firebaseio.com",
+  projectId: "myplace-202423",
+  storageBucket: "myplace-202423.appspot.com",
+  messagingSenderId: "644638328712"
+};
+firebase.initializeApp(config);
+
+// Store database obj to var
+var database = firebase.database();
+
 // Array of our places, we can replace with with API JSON if we get one working, if not manually enter places (Maybe even fireabase, and allow it to be updateable)
 var place = {
   UNH: {
@@ -8,7 +22,9 @@ var place = {
     state: "NH",
     zip: "03824",
     lat: 43.1389,
-    lng: -70.937
+    lng: -70.937,
+    title: "UNH",
+    description: "Something Something"
   },
   GBCC: {
     address: "320 Corporate Dr",
@@ -27,29 +43,26 @@ var place = {
     lng: -71.093526
   }
 };
-
+// Initialize the current place
 var currentPlace = {
   lat: place.UNH.lat,
   lng: place.UNH.lng
 };
 
+// Store current slide in local memory
 var currentSlide;
 
-// var uluru = {
-//   lat: currentPlace,
-//   lng: place.UNH.lng
-// };
-
+// Offset for the map to display in a viewable area
 var latitudeAdj = currentPlace.lat + 0.00039;
 
 var centerAdj = {
   lat: latitudeAdj,
-  lng: -70.937
+  lng: currentPlace.lng
 };
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 18,
+    zoom: 20,
     // mapTypeId: google.maps.MapTypeId.HYBRID,
     center: centerAdj,
     // Removes the UI, we may actually want this in our app
@@ -142,6 +155,44 @@ function initMap() {
   });
 }
 
+// Search button logic
+$("body").on("click", "#searchBtn", function() {
+  // Grab field inputs
+  var newSearch = $("#inputSearch")
+    .val()
+    .trim();
+  var newActivity = $("#inputActivity")
+    .val()
+    .trim();
+  // Form Validation
+  if (!newSearch || !newActivity) {
+    $("#editWarning")
+      .text("You did not input all the necessary fields")
+      .css("color", "red");
+    setTimeout(function() {
+      $("#editWarning")
+        .text("")
+        .css("color", "black");
+    }, 3000);
+  } else {
+    // Store the data locally until it gets pushed to the database
+    var searchHistory = {
+      search: newSearch,
+      activity: newActivity
+    };
+    // Render our search results
+    renderSearchResults();
+    // Update database
+    database.ref().update(searchHistory);
+    // Hide modal
+    $("#trainModal").modal("hide");
+  }
+});
+
+function renderSearchResults() {
+  // Placeholder
+}
+
 function panToNewPlace(x) {
   // Sets new place
   currentPlace = new google.maps.LatLng(x.lat, x.lng);
@@ -151,6 +202,18 @@ function panToNewPlace(x) {
   var marker = new google.maps.Marker({
     position: currentPlace,
     map: map
+  });
+}
+
+function getPrevSearches() {
+  database.ref().once("value", function(snapshot) {
+    // If there is a snapshot run code
+    if (snapshot.exists()) {
+      // Iterate through each snapshot
+      snapshot.forEach(function(data) {
+        // Store everything into a variable.
+      });
+    }
   });
 }
 
@@ -176,13 +239,14 @@ $("#contentArea").on("slide.bs.carousel", function(e) {
   }
 });
 
-// Click on the images
-$("body").on("click", ".newSlide", function() {
-  // Nothing to go here anymore, holding for a rainy day
-});
-
 $(document).ready(function() {
   $(".carousel").carousel({
     interval: false
+  });
+  // Initiate modal
+  $("#searchModal").modal({
+    show: true,
+    backdrop: "static",
+    keyboard: false
   });
 });
