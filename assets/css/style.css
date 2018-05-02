@@ -1,7 +1,7 @@
 /* Uncomment this html overflow if the page starts to get weird with scroll bars */
-/* html {
-  overflow: hidden;
-} */
+html {
+  overflow-x: hidden;
+}
 
 .heart {
   font-size: 25px;
@@ -16,12 +16,12 @@ h1 {
 
 /* MyPlace tagline text */
 h4 {
-  font-size: 1.05rem;
+  font-size: 1rem;
 }
 
 /* Our university titles */
 h3 {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -34,6 +34,10 @@ h3 {
 
 p {
   margin: 0;
+}
+
+#mainContent {
+  margin-left: 2%;
 }
 
 /* CSS for map background */
@@ -49,19 +53,23 @@ p {
 /* Sets the MyPlace logo to the front, sets the positioning and the size */
 #logo {
   color: white;
-  display: inline-block;
+  /* display: inline-block;
+  position: absolute; */
   z-index: 2;
-  position: absolute;
-  top: 10%;
-  left: 5%;
-  font-size: 3em;
+  /* top: 2%;
+  left: 30%; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  font-size: 2em;
 }
 
 /* This is the main "card" that displays our content */
 #contentArea {
-  margin-left: auto;
+  margin-left: 5%;
   margin-right: auto;
-  margin-top: 2%;
+  margin-top: 0;
   width: 35vw;
   height: 85vh;
   background: rgb(219, 219, 219);

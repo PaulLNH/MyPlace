@@ -64,7 +64,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 20,
     // mapTypeId: google.maps.MapTypeId.HYBRID,
-    center: centerAdj,
+    center: currentPlace,
     // Removes the UI, we may actually want this in our app
     disableDefaultUI: true,
     styles: [
@@ -185,12 +185,51 @@ $("body").on("click", "#searchBtn", function() {
     // Update database
     database.ref().update(searchHistory);
     // Hide modal
-    $("#trainModal").modal("hide");
+    $("#searchModal").modal("hide");
   }
 });
 
 function renderSearchResults() {
-  // Placeholder
+  // Clears the table
+  $("#searchResults").html("");
+  // Calls the info from the database, passes the snapshot
+  database.ref().once("value", function(snapshot) {
+    // If there is a snapshot run code
+    if (snapshot.exists()) {
+      // Iterate through each snapshot
+      snapshot.forEach(function(data) {
+        // Store everything into a variable.
+        var photo = data.val().photo;
+        var title = data.val().title;
+        var description = data.val().description;
+        var date = data.val().date;
+
+        div.addClass("carousel-item active");
+        // Add each train's data into the table
+        $("#searchResults").append(
+          // Placeholder - This area needs to render the carousel
+
+          '<div class="carousel-item active" id="' +
+            title +
+            '><div class="img-block" id="' +
+            photo[i] +
+            '"><img class="d-block" src="' +
+            photo[i] +
+            '" alt="' +
+            title +
+            '"></div><div class="card-title" id="' +
+            title[i] +
+            '"><h3>' +
+            Title[i] +
+            '</h3></div><div class="card-body" id="' +
+            body[i] +
+            '"><p>' +
+            body[i] +
+            "</p></div></div>"
+        );
+      });
+    }
+  });
 }
 
 function panToNewPlace(x) {
@@ -242,11 +281,5 @@ $("#contentArea").on("slide.bs.carousel", function(e) {
 $(document).ready(function() {
   $(".carousel").carousel({
     interval: false
-  });
-  // Initiate modal
-  $("#searchModal").modal({
-    show: true,
-    backdrop: "static",
-    keyboard: false
   });
 });
