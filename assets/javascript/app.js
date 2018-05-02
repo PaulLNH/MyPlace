@@ -14,6 +14,21 @@ firebase.initializeApp(config);
 // Store database obj to var
 var database = firebase.database();
 
+// Meetup url
+var queryURL =
+  "https://arcane-journey-54280.herokuapp.com/meetup/search?group_urlname=ny-tech&sign=true";
+
+// AJAX Call for JSON
+function searchQuery() {
+  $.ajax({
+    url:
+      "https://arcane-journey-54280.herokuapp.com/meetup/search?group_urlname=ny-tech&sign=true",
+    method: "GET"
+  }).then(function(response) {
+    console.log(response);
+  });
+}
+
 // Array of our places, we can replace with with API JSON if we get one working, if not manually enter places (Maybe even fireabase, and allow it to be updateable)
 var place = {
   UNH: {
@@ -284,4 +299,6 @@ $(document).ready(function() {
   $(".carousel").carousel({
     interval: false
   });
+  // searchQuery();
+  console.log(queryURL);
 });
