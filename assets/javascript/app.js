@@ -51,6 +51,8 @@ var currentPlace = {
 
 // Store current slide in local memory
 var currentSlide;
+// Leave this in or it breaks the map...
+var map = null;
 
 // Offset for the map to display in a viewable area
 var latitudeAdj = currentPlace.lat + 0.00039;
