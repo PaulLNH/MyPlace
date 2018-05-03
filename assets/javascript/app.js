@@ -13,7 +13,7 @@ firebase.initializeApp(config);
 
 // Store database obj to var
 var database = firebase.database();
-// var data = {};
+// Set our query URL for meetup API (currently a test url until we get one working with search results)
 var queryURL =
   "https://arcane-journey-54280.herokuapp.com/meetup/search?group_urlname=ny-tech&sign=true";
 
@@ -38,7 +38,11 @@ var currentPlace = {
   lng: -70.937
 };
 
+// Sets a query index array that will populate with the search result objects
 var queryIndex = [];
+
+// Sets savedHistory as our localStorage variable
+var savedHistory = JSON.parse(localStorage.getItem("history"));
 
 // Leave this in or it breaks the map...
 var map = null;
@@ -46,7 +50,7 @@ var map = null;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 20,
-    // mapTypeId: google.maps.MapTypeId.HYBRID,
+    mapTypeId: google.maps.MapTypeId.HYBRID,
     center: currentPlace,
     // Removes the UI, we may actually want this in our app
     disableDefaultUI: true,
@@ -221,14 +225,18 @@ function initMap() {
 
 // Search button logic
 $("body").on("click", "#searchBtn", function() {
+  // Prevents the button from refreshing the page
+  event.preventDefault();
   // Grab field inputs
+  // Grab this from the input box
   var newSearch = $("#inputSearch")
     .val()
     .trim();
+  // Grab this from the career drop down menu
   var newActivity = $("#inputActivity")
     .val()
     .trim();
-  // Form Validation
+  // Form Validation to ensure the fields are not blank
   if (!newSearch || !newActivity) {
     $("#editWarning")
       .text("You did not input all the necessary fields")
@@ -239,17 +247,40 @@ $("body").on("click", "#searchBtn", function() {
         .css("color", "black");
     }, 3000);
   } else {
+    // START OF LOGIC FOR LOCAL STORAGE
+
+    // Adding search result from the textbox to our array
+    savedHistory.push(newActivity + " in " + newSearch);
+    console.log(savedHistory);
+
+    // Ensures that we do not display more than 10 past searches
+    if (savedHistory.length > 10) {
+      savedHistory.shift();
+    }
+
+    // Overwrites our localStorage with our new array configuration
+    localStorage.setItem("history", JSON.stringify(savedHistory));
+
+    // Handles the processing of our movie array
+    renderHistory();
+
+    // Clears the search field for better UX
+    $("#inputSearch").val("");
+    // END OF LOGIC FOR LOCAL STORAGE
+
+    // START OF LOGIC FOR FIREBASE STORAGE
     // Store the data locally until it gets pushed to the database
+    // **** TODO: Add all of the pre-populated career topics and increment the one selected by 1 ****
     var searchHistory = {
       search: newSearch,
       activity: newActivity
     };
     // Render our search results
-    renderSearchResults();
+    // **** TODO: We will need to pass parameters through this function to complete the API url to make the AJAX call ****
+    searchQuery();
     // Update database
     database.ref().update(searchHistory);
-    // Hide modal
-    $("#searchModal").modal("hide");
+    // END OF LOGIC FOR FIREBASE STORAGE
   }
 });
 
@@ -310,6 +341,39 @@ function renderSearchResults(data) {
   }
 }
 
+// TODO: Match all the fields up with our interface
+
+// Render the last 10 search results from local memory
+function renderHistory() {
+  savedHistory = JSON.parse(localStorage.getItem("history"));
+  // Delete previous searches to prevent duplicates)
+  $("#pastSearches").empty();
+
+  // Loop through the array of searches
+  for (var i = 0; i < savedHistory.length; i++) {
+    // Dynamicaly generating search results for users history
+    var a = $("<a>");
+    var s = $("<span>");
+    // Adding a class
+    a.addClass("list-group-item search-btn");
+    // Adding attributes
+    a.attr({
+      href: "#",
+      // The data-parent #history assumes it will be part of a dropdown menu
+      "data-parent": "#history",
+      "data-name": savedHistory[i]
+    });
+    // Adding a class of searches to our menu
+    s.addClass("d-none d-md-inline");
+    // Adding the search text to the link (well span..)
+    s.text(savedHistory[i]);
+    // Adding the span to the anchor
+    a.append(s);
+    // Adding the searches to the menubar
+    $("#pastSearches").append(a);
+  }
+}
+
 // Function to pan the map to current viewing location
 function panToNewPlace(x) {
   var panToMe = queryIndex[x].venue;
@@ -355,6 +419,6 @@ $(document).ready(function() {
   $(".carousel").carousel({
     interval: false
   });
+  // Calls the search query function to initially populate the page
   searchQuery();
-  // renderSearchResults();
 });
