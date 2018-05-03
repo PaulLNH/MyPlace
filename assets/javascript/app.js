@@ -25,67 +25,23 @@ function searchQuery() {
     method: "GET"
   }).then(function(callback) {
     console.log(callback);
+    // Renders our search results based off of AJAX call to our API
     renderSearchResults(callback);
+    // Sets the background map to the first rendered meetup in the array
+    panToNewPlace(0);
   });
 }
 
-// Array of our places, we can replace with with API JSON if we get one working, if not manually enter places (Maybe even fireabase, and allow it to be updateable)
-var place = {
-  0: {
-    address: "105 Main St",
-    city: "Durham",
-    state: "NH",
-    zip: "03824",
-    lat: 43.1389,
-    lng: -70.937,
-    title: "University Of New Hampshire",
-    body:
-      "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend tincidunt sodales. Donec lacinia eget mauris dapibus ornare. Praesent egestas tincidunt tempor. Fusce facilisis ante et consequat convallis. Maecenas nec arcu id purus interdum cursus. Morbi eu nibh nec dolor luctus consequat id eget elit. In elit nisl, consequat ut arcu vulputate, mattis lacinia velit. Praesent pellentesque ante nec enim malesuada, posuere sollicitudin ipsum mollis. Suspendisse mollis et metus vel varius. Donec sit amet magna sem. Mauris ultricies tristique lectus in malesuada. Phasellus lacus ipsum, bibendum non efficitur nec, sodales efficitur tellus. Nunc ac ultricies augue, eget aliquam erat.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend tincidunt sodales. Donec lacinia eget mauris dapibus ornare. Praesent egestas tincidunt tempor. Fusce facilisis ante et consequat convallis. Maecenas nec arcu id purus interdum cursus. Morbi eu nibh nec dolor luctus consequat id eget elit. In elit nisl, consequat ut arcu vulputate, mattis lacinia velit. Praesent pellentesque ante nec enim malesuada, posuere sollicitudin ipsum mollis. Suspendisse mollis et metus vel varius. Donec sit amet magna sem. Mauris ultricies tristique lectus in malesuada. Phasellus lacus ipsum, bibendum non efficitur nec, sodales efficitur tellus. Nunc ac ultricies augue, eget aliquam erat.</p>",
-    img: "assets/img/UNH.jpg"
-  },
-  1: {
-    address: "320 Corporate Dr",
-    city: "Portsmouth",
-    state: "NH",
-    zip: "03801",
-    lat: 43.072149,
-    lng: -70.798802,
-    title: "Great Bay Community College",
-    body:
-      "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend tincidunt sodales. Donec lacinia eget mauris dapibus ornare. Praesent egestas tincidunt tempor. Fusce facilisis ante et consequat convallis. Maecenas nec arcu id purus interdum cursus. Morbi eu nibh nec dolor luctus consequat id eget elit. In elit nisl, consequat ut arcu vulputate, mattis lacinia velit. Praesent pellentesque ante nec enim malesuada, posuere sollicitudin ipsum mollis. Suspendisse mollis et metus vel varius. Donec sit amet magna sem. Mauris ultricies tristique lectus in malesuada. Phasellus lacus ipsum, bibendum non efficitur nec, sodales efficitur tellus. Nunc ac ultricies augue, eget aliquam erat.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend tincidunt sodales. Donec lacinia eget mauris dapibus ornare. Praesent egestas tincidunt tempor. Fusce facilisis ante et consequat convallis. Maecenas nec arcu id purus interdum cursus. Morbi eu nibh nec dolor luctus consequat id eget elit. In elit nisl, consequat ut arcu vulputate, mattis lacinia velit. Praesent pellentesque ante nec enim malesuada, posuere sollicitudin ipsum mollis. Suspendisse mollis et metus vel varius. Donec sit amet magna sem. Mauris ultricies tristique lectus in malesuada. Phasellus lacus ipsum, bibendum non efficitur nec, sodales efficitur tellus. Nunc ac ultricies augue, eget aliquam erat.</p>",
-    img: "assets/img/GBCC.jpg"
-  },
-  2: {
-    address: "77 Massachusetts Ave",
-    city: "Cambridge",
-    state: "MA",
-    zip: "02139",
-    lat: 42.359299,
-    lng: -71.093526,
-    title: "Massachusetts Institute of Technology",
-    body:
-      "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend tincidunt sodales. Donec lacinia eget mauris dapibus ornare. Praesent egestas tincidunt tempor. Fusce facilisis ante et consequat convallis. Maecenas nec arcu id purus interdum cursus. Morbi eu nibh nec dolor luctus consequat id eget elit. In elit nisl, consequat ut arcu vulputate, mattis lacinia velit. Praesent pellentesque ante nec enim malesuada, posuere sollicitudin ipsum mollis. Suspendisse mollis et metus vel varius. Donec sit amet magna sem. Mauris ultricies tristique lectus in malesuada. Phasellus lacus ipsum, bibendum non efficitur nec, sodales efficitur tellus. Nunc ac ultricies augue, eget aliquam erat.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend tincidunt sodales. Donec lacinia eget mauris dapibus ornare. Praesent egestas tincidunt tempor. Fusce facilisis ante et consequat convallis. Maecenas nec arcu id purus interdum cursus. Morbi eu nibh nec dolor luctus consequat id eget elit. In elit nisl, consequat ut arcu vulputate, mattis lacinia velit. Praesent pellentesque ante nec enim malesuada, posuere sollicitudin ipsum mollis. Suspendisse mollis et metus vel varius. Donec sit amet magna sem. Mauris ultricies tristique lectus in malesuada. Phasellus lacus ipsum, bibendum non efficitur nec, sodales efficitur tellus. Nunc ac ultricies augue, eget aliquam erat.</p>",
-    img: "assets/img/MIT.jpg"
-  }
-};
 // Initialize the current place
 var currentPlace = {
-  lat: place[0].lat,
-  lng: place[0].lng
+  lat: 43.1389,
+  lng: -70.937
 };
 
-// Store current slide in local memory
-var currentSlide;
+var queryIndex = [];
+
 // Leave this in or it breaks the map...
 var map = null;
-
-// Offset for the map to display in a viewable area
-var latitudeAdj = currentPlace.lat + 0.00039;
-
-var centerAdj = {
-  lat: latitudeAdj,
-  lng: currentPlace.lng
-};
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -303,6 +259,7 @@ function renderSearchResults(data) {
   console.log(Object.keys(queryData).length);
   // Clears the old search results
   $("#searchResults").html("");
+  queryIndex = [];
 
   // For each iteration, we will create a new carousel
   for (var i = 0; i < Object.keys(data.results).length; i++) {
@@ -326,8 +283,8 @@ function renderSearchResults(data) {
           queryData[i].description +
           "</p></div></div>"
       );
+      queryIndex.push(queryData[i]);
     } else {
-      console.log(queryData[i].title);
       // Passes values into our html
       $("#searchResults").append(
         '<div class="carousel-item" id="' +
@@ -348,38 +305,30 @@ function renderSearchResults(data) {
           queryData[i].description +
           "</p></div></div>"
       );
+      queryIndex.push(queryData[i]);
     }
   }
 }
 
-// Store lat & lng info into an array
-// Randomize questions
-function latLng() {
-  roundQuestions = [];
-  // Logic to pick questions for a new round
-  while (roundQuestions.length < howManyQuestions) {
-    // Select a random number that represents the trivia array
-    var r = Math.floor(Math.random() * Object.keys(trivia).length);
-    // If that index is not in the array, add it to the array
-    if (roundQuestions.indexOf(trivia[r]) === -1) {
-      // Add trivia question to round questions
-      roundQuestions.push(trivia[r]);
-    }
-  }
-}
-
+// Function to pan the map to current viewing location
 function panToNewPlace(x) {
+  var panToMe = queryIndex[x].venue;
+  // Offset for the map to display in a viewable area
+  var lonAdj = panToMe.lon + 0.00039;
+  // Sets adjusted place for offset
+  var placeAdj = new google.maps.LatLng(panToMe.lat, lonAdj);
   // Sets new place
-  currentPlace = new google.maps.LatLng(x.lat, x.lng);
+  currentPlace = new google.maps.LatLng(panToMe.lat, panToMe.lon);
   // Pan to new place
   map.panTo(currentPlace);
   // Sets the marker for the place
   var marker = new google.maps.Marker({
-    position: currentPlace,
+    position: placeAdj,
     map: map
   });
 }
 
+// Function for Firebase data
 function getPrevSearches() {
   database.ref().once("value", function(snapshot) {
     // If there is a snapshot run code
@@ -392,25 +341,14 @@ function getPrevSearches() {
   });
 }
 
+// On click function for carousel prev and next
 $("#contentArea").on("slide.bs.carousel", function(e) {
   // e.relatedTarget is the entire current slide <div> element
   var currentSlideID = e.relatedTarget;
   // e.to is the next slide index (the one we are transitiong to)
   var currentSlide = e.to;
-
-  switch ($(currentSlideID).attr("id")) {
-    case "UNH":
-      panToNewPlace(place[currentSlide]);
-      break;
-    case "GBCC":
-      panToNewPlace(place[currentSlide]);
-      break;
-    case "MIT":
-      panToNewPlace(place[currentSlide]);
-      break;
-    default:
-      panToNewPlace(place[currentSlide]);
-  }
+  // Calls the pan to map function and passes the current slide index through it
+  panToNewPlace(currentSlide);
 });
 
 $(document).ready(function() {
