@@ -22,52 +22,38 @@
 <body>
 
     <!-- Modal for Edit button -->
-    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="searchModalTitle">Start Networking!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="searchModalBody">
-                    <form>
-                        <div class="form-group">
-                            <div class="col">
-                                <label for="searchArea">Search Area</label>
-                                <input type="text" id="inputSearch" class="form-control" placeholder="Search Area">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col">
-                                <label for="searchEvent">Search Activity/Interest</label>
-                                <input type="text" id="inputActivity" class="form-control" placeholder="Activity / Interest">
-                            </div>
-                        </div>
-                        <span id="searchWarning"></span>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="searchBtn">Search</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Page Wrapper div -->
     <div id="map"></div>
     <div id="googleMaps"></div>
     <div class="row">
         <span id="logo">
-            <h1>MyPlace</h1>
+            <h1>TechMeet</h1>
             <h4>
-                <em>Find apartments to get intimate with.</em>
+                <em>Find meetups in the tech sector.</em>
             </h4>
         </span>
     </div>
-    <div class="container p-t-3" id="mainContent">
+    <div class="container-fluid p-t-3" id="mainContent">
+        <div class="row" id="searchbar">
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <select class="selectpicker">
+                            <option>Web Developer</option>
+                            <option>Graphic Designer</option>
+                            <option>Software Engineer</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                            <input type="text" class="form-control" placeholder="City/State">
+                            <span class="input-group-btn">
+                              <button class="btn btn-secondary" type="button">Go!</button>
+                            </span>
+                          </div>
+                </div>
+            </div>
+        </div>
 
         <!-- BELOW IS THE CAROUSEL MADE FROM SCRATCH FOR THIS PROJECT -->
         <div id="contentArea" class="carousel slide" data-ride="carousel">
