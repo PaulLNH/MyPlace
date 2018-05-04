@@ -14,11 +14,12 @@ var searchCategory = "Networking+web+development";
 
 // Store database obj to var
 var database = firebase.database();
-// Set our query URL for meetup API (currently a test url until we get one working with search results)
-var queryURL = "https://arcane-journey-54280.herokuapp.com/meetup/search/open_events?zip=" + searchZip + "&and_text=False&offset=0&format=json&limited_events=False&text=" + searchCategory + "&photo-host=public&page=10&radius=50&omit=Blockchain&desc=False&status=upcoming&key=167c8504c5b17cb6e83a377e6d12";
+
 
 // AJAX Call for JSON
-function searchQuery() {
+function searchQuery(zipCode, careerField) {
+    // Set our query URL for meetup API (currently a test url until we get one working with search results)
+    var queryURL = "https://arcane-journey-54280.herokuapp.com/meetup/search/open_events?zip=" + zipCode + "&and_text=False&offset=0&format=json&limited_events=False&text=" + careerField + "&photo-host=public&page=10&radius=50&omit=Blockchain&desc=False&status=upcoming&key=167c8504c5b17cb6e83a377e6d12";
     // Meetup url
     $.ajax({
         url: queryURL,
@@ -195,21 +196,21 @@ $("body").on("click", "#searchBtn", function () {
         .val()
         .trim();
     // Grab this from the career drop down menu
-    if ($("#dropDown").val() == "Web Developer") {
+    if ($("#dropDown").val() == "WebDev") {
         searchCategory = "Networking+web+development";
-    } else if ($("#dropDown").val() == "Graphic Designer") {
+    } else if ($("#dropDown").val() == "GraphicDesign") {
         searchCategory = "Networking+graphic+design";
-    } else if ($("#dropDown").val() == "Software Engineer") {
+    } else if ($("#dropDown").val() == "SoftwareEngineer") {
         searchCategory = "Networking+software+engineer";
     }
 
     // Form Validation to ensure the fields are not blank
-    if (!newSearch || !newActivity) {
-        $("#editWarning")
-            .text("You did not input all the necessary fields")
+    if (!searchZip) {
+        $("#warningTxt")
+            .text("Invalid Zip")
             .css("color", "red");
         setTimeout(function () {
-            $("#editWarning")
+            $("#warningTxt")
                 .text("")
                 .css("color", "black");
         }, 3000);
@@ -217,98 +218,146 @@ $("body").on("click", "#searchBtn", function () {
         // START OF LOGIC FOR LOCAL STORAGE
 
         // Adding search result from the textbox to our array
-        savedHistory.push(newActivity + " in " + newSearch);
-        console.log(savedHistory);
+        // savedHistory.push(searchCategory + " in " + newSearch);
+        // console.log(savedHistory);
 
         // Ensures that we do not display more than 10 past searches
-        if (savedHistory.length > 10) {
-            savedHistory.shift();
-        }
+        // if (savedHistory.length > 10) {
+        //     savedHistory.shift();
+        // }
 
         // Overwrites our localStorage with our new array configuration
-        localStorage.setItem("history", JSON.stringify(savedHistory));
+        // localStorage.setItem("history", JSON.stringify(savedHistory));
 
-        // Handles the processing of our movie array
-        renderHistory();
+        // Handles the processing of our rescent searches array
+        // renderHistory();
 
         // Clears the search field for better UX
-        $("#inputSearch").val("");
+        $("#searchZip").val("");
         // END OF LOGIC FOR LOCAL STORAGE
 
         // START OF LOGIC FOR FIREBASE STORAGE
         // Store the data locally until it gets pushed to the database
         // **** TODO: Add all of the pre-populated career topics and increment the one selected by 1 ****
-        var searchHistory = {
-            search: newSearch,
-            activity: newActivity
-        };
+        // var searchHistory = {
+        //     search: newSearch,
+        //     activity: newActivity
+        // };
         // Render our search results
         // **** TODO: We will need to pass parameters through this function to complete the API url to make the AJAX call ****
-        searchQuery();
+        searchQuery(searchZip, searchCategory);
         // Update database
-        database.ref().update(searchHistory);
+        // database.ref().update(searchHistory);
         // END OF LOGIC FOR FIREBASE STORAGE
     }
 });
 
 function renderSearchResults(data) {
     var queryData = data.results;
-    // TODO: Use data.results that is throwing errors currently
-    console.log(Object.keys(queryData).length);
     // Clears the old search results
     $("#searchResults").html("");
     queryIndex = [];
 
     // For each iteration, we will create a new carousel
     for (var i = 0; i < Object.keys(data.results).length; i++) {
+        // This checks to see if this is the first slide in the array, if so adds the .active class
         if (i === 0) {
-            $("#searchResults").append(
-                '<div class="carousel-item active" id="' +
-                queryData[i].name +
-                '"><div class="img-block" id="' +
-                queryData[i].name +
-                'Img"><img class="d-block" src="' +
-                queryData[i].photo_url +
-                '" alt="' +
-                queryData[i].title +
-                '"></div><div class="card-title" id="' +
-                queryData[i].name +
-                'Title"><h3>' +
-                queryData[i].name +
-                '</h3></div><div class="card-body" id="' +
-                queryData[i].name +
-                'Body"><p>' +
-                queryData[i].description +
-                "</p></div></div>"
-            );
+            // If the listing has a photo, add the photo
+            if (queryData[i].photo_url) {
+                $("#searchResults").append(
+                    '<div class="carousel-item active" id="' +
+                    queryData[i].name +
+                    '"><div class="img-block" id="' +
+                    queryData[i].name +
+                    'Img"><img class="d-block" src="' +
+                    queryData[i].photo_url +
+                    '" alt="' +
+                    queryData[i].title +
+                    '"></div><div class="card-title" id="' +
+                    queryData[i].name +
+                    'Title"><a href="' +
+                    queryData[i].event_url +
+                    '" target="_blank"><h3>' +
+                    queryData[i].name +
+                    '</h3></a></div><div class="card-body" id="' +
+                    queryData[i].name +
+                    'Body"><p>' +
+                    queryData[i].description +
+                    "</p></div></div>"
+                );
+            } else {
+                // If the listing does not have a photo, use our own
+                $("#searchResults").append(
+                    '<div class="carousel-item active" id="' +
+                    queryData[i].name +
+                    '"><div class="img-block" id="' +
+                    queryData[i].name +
+                    'Img"><img class="d-block" src="./assets/img/networking.jpg" alt="' +
+                    queryData[i].title +
+                    '"></div><div class="card-title" id="' +
+                    queryData[i].name +
+                    'Title"><a href="' +
+                    queryData[i].event_url +
+                    '" target="_blank"><h3>' +
+                    queryData[i].name +
+                    '</h3></a></div><div class="card-body" id="' +
+                    queryData[i].name +
+                    'Body"><p>' +
+                    queryData[i].description +
+                    "</p></div></div>"
+                );
+            }
             queryIndex.push(queryData[i]);
         } else {
-            // Passes values into our html
-            $("#searchResults").append(
-                '<div class="carousel-item" id="' +
-                queryData[i].name +
-                '"><div class="img-block" id="' +
-                queryData[i].name +
-                'Img"><img class="d-block" src="' +
-                queryData[i].photo_url +
-                '" alt="' +
-                queryData[i].name +
-                '"></div><div class="card-title" id="' +
-                queryData[i].name +
-                'Title"><h3>' +
-                queryData[i].name +
-                '</h3></div><div class="card-body" id="' +
-                queryData[i].name +
-                'Body"><p>' +
-                queryData[i].description +
-                "</p></div></div>"
-            );
+            // If the listing has a photo, add the photo
+            if (queryData[i].photo_url) {
+                $("#searchResults").append(
+                    '<div class="carousel-item" id="' +
+                    queryData[i].name +
+                    '"><div class="img-block" id="' +
+                    queryData[i].name +
+                    'Img"><img class="d-block" src="' +
+                    queryData[i].photo_url +
+                    '" alt="' +
+                    queryData[i].title +
+                    '"></div><div class="card-title" id="' +
+                    queryData[i].name +
+                    'Title"><a href="' +
+                    queryData[i].event_url +
+                    '" target="_blank"><h3>' +
+                    queryData[i].name +
+                    '</h3></a></div><div class="card-body" id="' +
+                    queryData[i].name +
+                    'Body"><p>' +
+                    queryData[i].description +
+                    "</p></div></div>"
+                );
+            } else {
+                // If the listing does not have a photo, use our own
+                $("#searchResults").append(
+                    '<div class="carousel-item" id="' +
+                    queryData[i].name +
+                    '"><div class="img-block" id="' +
+                    queryData[i].name +
+                    'Img"><img class="d-block" src="./assets/img/networking.jpg" alt="' +
+                    queryData[i].title +
+                    '"></div><div class="card-title" id="' +
+                    queryData[i].name +
+                    'Title"><a href="' +
+                    queryData[i].event_url +
+                    '" target="_blank"><h3>' +
+                    queryData[i].name +
+                    '</h3></a></div><div class="card-body" id="' +
+                    queryData[i].name +
+                    'Body"><p>' +
+                    queryData[i].description +
+                    "</p></div></div>"
+                );
+            }
             queryIndex.push(queryData[i]);
         }
     }
 }
-
-// TODO: Match all the fields up with our interface
 
 // Render the last 10 search results from local memory
 function renderHistory() {
@@ -387,5 +436,5 @@ $(document).ready(function () {
         interval: false
     });
     // Calls the search query function to initially populate the page
-    searchQuery();
+    searchQuery(searchZip, searchCategory);
 });

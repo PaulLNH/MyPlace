@@ -20,51 +20,43 @@
 </head>
 
 <body>
-
-    <!-- Modal for Edit button -->
-    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="searchModalTitle">Start Networking!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="searchModalBody">
-                    <form>
-                        <div class="form-group">
-                            <div class="col">
-                                <label for="searchArea">Search Area</label>
-                                <input type="text" id="inputSearch" class="form-control" placeholder="Search Area">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col">
-                                <label for="searchField">Search Activity/Interest</label>
-                                <input type="text" id="inputField" class="form-control" placeholder="Activity / Interest">
-                            </div>
-                        </div>
-                        <span id="searchWarning"></span>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="searchBtn">Search</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Page Wrapper div -->
     <div id="map"></div>
     <div id="googleMaps"></div>
     <div class="row text-center">
         <span id="logo">
-            <h1>Tech.console()</h1>
-            <h4>
-                <em>The starting point for your networking journey.</em>
+            <h1>
+                <span id="techLogo">Tech</span>
+                <span id="consoleLogo">.console()</span>
+            </h1>
+            <h4 id="tagLine">
+                <em>// The starting point for your networking journey.</em>
             </h4>
+
+            <!-- SEARCH BAR -->
+            <div class="row" id="searchbar">
+                <div class="col-lg-3">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <select class="select-picker" id="dropDown">
+                                <option value="WebDev" selected>Web Developer</option>
+                                <option value="GraphicDesign">Graphic Designer</option>
+                                <option value="SoftwareEngineer">Software Engineer</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code" placeholder="Zip Code" maxlength="5"
+                                id="zipCode">
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="button" id="searchBtn">Go!</button>
+                                <span id="warningTxt"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- SEARCH BAR -->
+
         </span>
     </div>
     <div class="container p-t-3" id="mainContent">
