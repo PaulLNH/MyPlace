@@ -29,7 +29,7 @@ function searchQuery(zipCode, careerField) {
         // Renders our search results based off of AJAX call to our API
         renderSearchResults(callback);
         // Sets the background map to the first rendered meetup in the array
-        panToNewPlace(0);
+        panToNewPlace(1);
     });
 }
 
