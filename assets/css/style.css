@@ -1,6 +1,6 @@
 /* Uncomment this html overflow if the page starts to get weird with scroll bars */
 html {
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .heart {
