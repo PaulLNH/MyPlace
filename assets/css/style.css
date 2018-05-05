@@ -65,10 +65,26 @@ p {
   width: 90px;
 }
 
+/* #dropDown {
+  width: 300px;
+} */
+
+#searchBtn {
+  background-color: #4ebe7d;
+  height: 75px;
+  width: 85px;
+}
+
+#buttonGroup {
+  position: absolute;
+  right: -325px;
+  top: -42.5px;
+}
+
 #searchbar {
   position: absolute;
   right: 15%;
-  top: 30px;
+  top: 4px;
   width: 325px;
   height: 35px;
 }
