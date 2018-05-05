@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tech.console() - The starting point for your networking journey.</title>
+
+    <!-- Bootstrap 4 CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Pontano+Sans|Righteous" rel="stylesheet">
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+        crossorigin="anonymous">
+    <!-- App specific CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+    <!-- Page Wrapper div -->
+    <div id="map"></div>
+    <div id="googleMaps"></div>
+    <div class="row text-center">
+        <span id="logo">
+            <h1>
+                <span id="techLogo">Tech</span>
+                <span id="consoleLogo">.console()</span>
+            </h1>
+            <h4 id="tagLine">
+                <em>// The starting point for your networking journey.</em>
+            </h4>
+
+            <!-- SEARCH BAR -->
+            <div class="row" id="searchbar">
+                <div class="col-lg-3">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <select class="select-picker" id="dropDown">
+                                <option value="WebDev" selected>Web Developer</option>
+                                <option value="GraphicDesign">Graphic Designer</option>
+                                <option value="SoftwareEngineer">Software Engineer</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code" placeholder="Zip Code" maxlength="5"
+                                id="zipCode">
+                            <span class="input-group-btn" id="buttonGroup">
+                                <button class="btn btn-success" type="button" id="searchBtn">Go!</button>
+                                <span id="warningTxt"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- SEARCH BAR -->
+
+        </span>
+    </div>
+    <div class="container p-t-3" id="mainContent">
+
+        <!-- BELOW IS THE CAROUSEL MADE FROM SCRATCH FOR THIS PROJECT -->
+        <div id="contentArea" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" id="searchResults">
+                <!-- This is where the our carousel generates -->
+            </div>
+            <a class="carousel-control-prev newSlide" href="#contentArea" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon newSlide" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next newSlide" href="#contentArea" role="button" data-slide="next">
+                <span class="carousel-control-next-icon newSlide" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+
+    </div>
+
+
+    <!-- JQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
+    <!-- Popper CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- Google maps -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXmz75aIEpLy3M36t39IfSjbsZnbEYaZc&callback=initMap">
+    </script>
+
+    <!-- Firebase CDN -->
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+
+    <!-- App specific JS -->
+    <script type='text/javascript' src='assets/javascript/app.js'></script>
+</body>
+
+</html>
