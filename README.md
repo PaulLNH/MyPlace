@@ -1,28 +1,22 @@
-## MyPlace
+## Tech.console()
 
-**Find apartments to get intimate with.**
+**The starting point for your networking journey.**
 
 ###Team members:
-Josh, Jessica, Christian, Gregg, Paul
+Josh, Jessica, Christian, Paul
 
 ###Problem:
-People need a place to live and not everyone can afford a house, one of the biggest challenges when finding a new place is knowing your future neighborhood before you make the commitment.
+Networking can be tough. Where do you go? How do you meet people in the field? We know it’s essential for finding the perfect job, but it can be overwhelming and often seems so daunting. In just a few months, almost everyone in this room will be looking for a new career path. Some in WebDev, front end, back end, or software engineer. What if you had access to tech networking events in your area?
 
 ###Solution:
-MyPlace solves this by displaying available apartments for rent based off of your search city, it then cultivates a list of places you can scroll through, when you like an apartment you can favorite it with the heart to view it later. Clicking on a search result will enlarge the search giving you further details about what's in the neighborhood! It’s that simple.
+Introducing “tech.console()”. The starting point to your networking journey. Solving your networking woes by displaying available networking groups based off your search city and job field. It then cultivates a scrolling list of groups or events you can attend. See one you like? Click the link and RSVP. It’s that simple.
 
-###Sketch of final project:
-
-###APIs: Walk Score, Google Maps, Realtor, Geolocation
+###APIs: Meetup, Google Maps
 
 ### Breakdown of Tasks:
 
-**Josh:** Apartment Search API and data management involved
-**Jessica:** Front End UI Design and JS rendering of results
-**Christian:** Tying in the search results with the maps (Search Feature)
-**Gregg:** Walk Score API for (Grocery store, School, Transportation, ect) - Needs to give us plot points (coordinates) to plot on our map
-**Paul:** Google Maps (Background image on front end) & Favorites (Local storage of favorited search results - if you are logged in will save to firebase)
+**Josh:** MeetUp API, Framework, Upcoming Features
+**Jessica:** Front End UI Design, Search Feature, Framework
+**Christian:** API Research, Creative Inspiration
+**Paul:** Google Maps (Background image on front end), Front and Back End Design, Implementing API Calls, UI JS rendering of results
 
-###Minimum Viable Product (MVP):
-Apartment aggregator with the ability to favorite (adds to a list to review later)
-Shows the grocery stores/schools, etc in the area
